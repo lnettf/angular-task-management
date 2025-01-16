@@ -1,0 +1,19 @@
+<h2>Lista de Tareas</h2>
+
+<input #taskInput type="text" placeholder="Nueva tarea" />
+<button (click)="addTask(taskInput.value); taskInput.value = ''">
+  Agregar
+</button>
+
+<ul>
+  @for ( task of tasks; track task.id) {
+  <app-todo-item
+    [task]="task"
+    (taskUpdate)="updateTask($event)"
+    (taskDelete)="deleteTask($event)"
+  >
+  </app-todo-item>
+  } @empty {
+  <li>No hay tareas pendientes.</li>
+  }
+</ul>
